@@ -1,22 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import './HorizontalTable.css'
-
-const WHITE = '#FFF'
-const GREY = '#444'
+import Seat from './Seat'
+import colors from './colors'
 
 const tableStyle = {
   display: 'grid',
-  gridTemplateColumns: '60px 60px 60px 60px 60px 60px 60px 60px 60px 60px',
+  gridTemplateColumns: '50px 50px 50px 50px 50px 50px 50px 50px 50px 50px',
   gridGap: '1px',
-  color: WHITE 
-}
-
-const seatStyle = {
-  backgroundColor: GREY,
-  color: WHITE,
-  borderRadius: '5px',
-  padding: '5px'
+  color: colors.WHITE 
 }
 
 class HorizontalTable extends Component {
@@ -25,13 +16,7 @@ class HorizontalTable extends Component {
     return (
       <div style={tableStyle}>
         { seats.map(seat =>
-          <div 
-            style={seatStyle} 
-            className={seat.sittable ? '': 'unsittable'} 
-            key={seat.id}
-          >
-            {seat.name}
-          </div>
+          <Seat seat={seat} key={seat.id} />
         ) }
       </div>
     )
