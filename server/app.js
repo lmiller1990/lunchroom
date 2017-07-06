@@ -3,8 +3,12 @@ const mongoose = require('mongoose')
 const db       = require('./models/db')
 const ejs      = require('ejs')
 const path     = require('path')
+const cors     = require('cors')
+const seats    = require('./routes/seats')
 
 const app = express()
+app.use(cors())
+app.use('/seats', seats)
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
