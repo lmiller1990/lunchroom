@@ -3,11 +3,20 @@ import HorizontalTable from './HorizontalTable'
 import sittable from './sittableTables'
 
 class Lunchroom extends Component {
+  concat (...args) {
+    return args.reduce((acc, val) => [...acc, ...val])
+  }
+
   seats () {
+    let htmSeats = sittable.map(table => 
+      table.seats.map(seat => seat)
+    )
+    htmSeats = this.concat(...htmSeats)
+
     let arr = new Array(120).fill()
     return arr.map((seat, index) => { 
       return { 
-        id: index + 1, name: `#${index + 1}`, sittable: sittable.includes(index + 1)
+        id: index + 1, name: `#${index + 1}`, sittable: htmSeats.includes(index + 1)
       }
     })
   }
@@ -15,8 +24,8 @@ class Lunchroom extends Component {
   render() {
     return (
       <div>
-        Lunchroom
-        <HorizontalTable seats={this.seats()} />
+      Lunchroom
+      <HorizontalTable seats={this.seats()} />
       </div>
     )
   }

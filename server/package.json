@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "cors": "^2.8.3",
     "ejs": "^2.5.6",
