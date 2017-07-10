@@ -1,6 +1,15 @@
 import React, {Component} from 'react'
 import HorizontalTable from './HorizontalTable'
+import Seat from './Seat'
+import colors from './colors'
 import axios from 'axios'
+
+const tableStyle = {
+  display: 'grid',
+  gridTemplateColumns: '50px 50px 50px 50px 50px 50px 50px 50px 50px 50px',
+  gridGap: '1px',
+  color: colors.WHITE 
+}
 
 class Lunchroom extends Component {
   constructor(props) {
@@ -40,9 +49,10 @@ class Lunchroom extends Component {
 
   render() {
     return (
-      <div>
-      Lunchroom
-        <HorizontalTable seats={this.seats()} />
+      <div style={tableStyle}>
+        { this.seats().map(seat =>
+          <Seat seat={seat} key={seat.id} />
+        ) }
       </div>
     )
   }
