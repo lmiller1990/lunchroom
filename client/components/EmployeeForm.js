@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 
 const employeeForm = ({newEmployee, createEmployee, handleChange}) => {
   return (

@@ -1,30 +1,26 @@
 import React, {Component} from 'react'
-import HorizontalTable from './HorizontalTable'
-import Seat from './Seat'
-import colors from './colors'
+import EmployeeList from './EmployeeList'
+import Seats from './seats'
 import axios from 'axios'
-
-const tableStyle = {
-  display: 'grid',
-  gridTemplateColumns: '50px 50px 50px 50px 50px 50px 50px 50px 50px 50px',
-  gridGap: '1px',
-  color: colors.WHITE 
-}
 
 class Lunchroom extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      tables: []
+      tables: [],
+      employees: []
     }
   }
 
   componentDidMount () {
     axios.get('http://localhost:3000/tables/')
       .then(response => 
-        this.setState({tables: response.data})
-      )
+        this.setState({tables: response.data}))
+
+    axios.get('http://localhost:3000/employees')
+      .then(response =>
+        this.setState({employees: response.data}))
   }
 
   sittable () {
@@ -49,10 +45,9 @@ class Lunchroom extends Component {
 
   render() {
     return (
-      <div style={tableStyle}>
-        { this.seats().map(seat =>
-          <Seat seat={seat} key={seat.id} />
-        ) }
+      <div>
+        <Seats seats={this.seats()} />
+        <EmployeeList employees={this.state.employees} />
       </div>
     )
   }

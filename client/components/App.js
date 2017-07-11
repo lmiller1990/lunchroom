@@ -9,7 +9,7 @@ class App extends Component {
 
     this.state = {
       newEmployee: {
-        name: 'O'
+        name: ''
       }
     }
 
@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   handleChange (e) {
+    console.log('Handling change')
     const emp = Object.assign({}, this.state.newEmployee)
     emp.name = e.target.value
 
@@ -28,7 +29,12 @@ class App extends Component {
     console.log('Creating', this.state.newEmployee)
     axios.post('http://localhost:3000/employees/create', {
       employee: this.state.newEmployee,
-    }).then(response => console.log(response))
+    }).then(response => {
+      console.log(response)
+      let emp = {name: ''}
+      this.setState({newEmployee: emp})
+    }
+  )
   }
 
   render () {
