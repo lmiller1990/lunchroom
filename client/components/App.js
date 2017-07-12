@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Lunchroom from './Lunchroom'
 import EmployeeForm from './EmployeeForm'
 import axios from 'axios'
+import { DragDropContext  } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 class App extends Component {
   constructor(props) {
@@ -51,4 +53,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default DragDropContext(HTML5Backend)(App)
